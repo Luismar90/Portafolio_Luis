@@ -10,11 +10,19 @@ function mostrarOcultarMenu(){
     }
 }
 
+document.querySelector(".nav-responsive").addEventListener("click", () => {
+    // Aquí se alterna la clase "active" en el contenedor del menú
+    document.querySelector(".contenedor-header").classList.toggle("active");
+  });
+  
+
 function seleccionar(){
     //oculto el menu una vez que selecciono una opcion
     document.getElementById("nav").classList = "";
     menuVisible = false;
 }
+
+
 //Funcion que aplica las animaciones de las habilidades
 function efectoHabilidades(){
     var skills = document.getElementById("skills");
