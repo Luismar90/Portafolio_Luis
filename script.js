@@ -94,9 +94,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       if (!emailRegex.test(email)) {
-        document.getElementById("error-email").textContent = "Correo no válido.";
-        valid = false;
-      }
+  document.getElementById("error-email").textContent = "Correo no válido.";
+  valid = false;
+}
 
       if (title.length < 3) {
         document.getElementById("error-title").textContent = "Asunto muy corto.";
@@ -110,7 +110,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (!valid) return;
 
-      // Enviar si todo es válido
       emailjs.sendForm("service_pros", "template_c4s62rq", this)
         .then(() => {
           alert("Mensaje enviado correctamente.");
@@ -123,4 +122,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
 
