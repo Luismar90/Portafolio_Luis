@@ -64,23 +64,55 @@ window.onscroll = function(){
 } 
 
 
+
 // Inicializar EmailJS cuando el DOM esté listo
-document.addEventListener("DOMContentLoaded", function() {
-    emailjs.init("f4JxE9G_DaVeeXh7n"); //  User ID
+document.addEventListener("DOMContentLoaded", function () {
+  emailjs.init("f4JxE9G_DaVeeXh7n"); // Tu User ID
 
-    // Configurar envío del formulario
-    const form = document.getElementById("contact-form");
-    if (form) {
-        form.addEventListener("submit", function(event) {
-            event.preventDefault();
+  const form = document.getElementById("contact-form");
 
-            emailjs.sendForm("service_pros", "template_c4s62rq", this)
-                .then(function(response) {
-                    alert("Mensaje enviado correctamente.");
-                }, function(error) {
-                    alert("Error al enviar el mensaje.");
-                    console.error(error);
-                });
+  if (form) {
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      // Validación personalizada
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const title = form.title.value.trim();
+      const message = form.message.value.trim();
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (name.length < 2) {
+        alert("Por favor, introduce un nombre válido.");
+        return;
+      }
+
+      if (!emailRegex.test(email)) {
+        alert("Por favor, introduce un correo electrónico válido.");
+        return;
+      }
+
+      if (title.length < 3) {
+        alert("El asunto debe tener al menos 3 caracteres.");
+        return;
+      }
+
+      if (message.length < 10) {
+        alert("El mensaje debe tener al menos 10 caracteres.");
+        return;
+      }
+
+      // Envío con EmailJS si todo es válido
+      emailjs.sendForm("service_pros", "template_c4s62rq", this)
+        .then(function (response) {
+          alert("Mensaje enviado correctamente.");
+          form.reset(); // Limpiar el formulario
+        }, function (error) {
+          alert("Error al enviar el mensaje.");
+          console.error(error);
         });
-    }
+    });
+  }
 });
+
