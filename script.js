@@ -62,3 +62,25 @@ document.getElementById('download-button').addEventListener('click', function() 
 window.onscroll = function(){
     efectoHabilidades();
 } 
+
+
+// Inicializar EmailJS cuando el DOM esté listo
+document.addEventListener("DOMContentLoaded", function() {
+    emailjs.init("f4JxE9G_DaVeeXh7n"); //  User ID
+
+    // Configurar envío del formulario
+    const form = document.getElementById("contact-form");
+    if (form) {
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            emailjs.sendForm("service_pros", "template_c4s62rq", this)
+                .then(function(response) {
+                    alert("Mensaje enviado correctamente.");
+                }, function(error) {
+                    alert("Error al enviar el mensaje.");
+                    console.error(error);
+                });
+        });
+    }
+});
