@@ -456,22 +456,28 @@
       <div class="contenido-seccion">
         <h2>CONTACTO</h2>
         <div class="fila">
-          <!-- Formulario -->
-          <form id="contact-form">
-            <input type="text" name="name" placeholder="Nombre" required />
-            <div class="error" id="error-name"></div>
+          <!-- Columna del Formulario -->
+          <div class="col">
+            <form id="contact-form">
+              <input type="text" name="name" placeholder="Nombre" required />
+              <div class="error" id="error-name"></div>
 
-            <input type="email" name="email" placeholder="Correo" required />
-            <div class="error" id="error-email"></div>
+              <input type="email" name="email" placeholder="Correo" required />
+              <div class="error" id="error-email"></div>
 
-            <input type="text" name="title" placeholder="Asunto" required />
-            <div class="error" id="error-title"></div>
+              <input type="text" name="title" placeholder="Asunto" required />
+              <div class="error" id="error-title"></div>
 
-            <textarea name="message" placeholder="Mensaje" required></textarea>
-            <div class="error" id="error-message"></div>
+              <textarea
+                name="message"
+                placeholder="Mensaje"
+                required
+              ></textarea>
+              <div class="error" id="error-message"></div>
 
-            <button type="submit">Enviar</button>
-          </form>
+              <button type="submit">Enviar</button>
+            </form>
+          </div>
 
           <!-- Mapa -->
           <div class="col">

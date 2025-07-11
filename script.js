@@ -93,10 +93,10 @@ document.addEventListener("DOMContentLoaded", function () {
         valid = false;
       }
 
-      if (!emailRegex.test(email)) {
-  document.getElementById("error-email").textContent = "Correo no válido.";
-  valid = false;
-}
+   if (!emailRegex.test(email)) {
+        document.getElementById("error-email").textContent = "Correo no válido.";
+        valid = false;
+      }
 
       if (title.length < 3) {
         document.getElementById("error-title").textContent = "Asunto muy corto.";
