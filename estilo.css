@@ -575,7 +575,7 @@ html {
 }
 /* SECCION CONTACTO */
 .contacto {
-  background-image: url(img/contact_bg.png);
+  background-image: url();
   background-color: #1e2326;
   color: #fff;
   padding: 50px 0;

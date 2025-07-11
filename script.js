@@ -66,61 +66,64 @@ window.onscroll = function(){
 
 
 // Inicializar EmailJS cuando el DOM esté listo
-document.addEventListener("DOMContentLoaded", function () {
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Inicializa EmailJS con tu public key
   emailjs.init("f4JxE9G_DaVeeXh7n");
 
   const form = document.getElementById("contact-form");
 
-  if (form) {
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
+  if (!form) return;
 
-      // Limpiar errores anteriores
-      ["name", "email", "title", "message"].forEach(id => {
-        document.getElementById("error-" + id).textContent = "";
-      });
+  form.addEventListener("submit", (event) => {
+    event.preventDefault(); // Detiene el envío tradicional
 
-      const name = form.name.value.trim();
-      const email = form.email.value.trim();
-      const title = form.title.value.trim();
-      const message = form.message.value.trim();
-      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-      let valid = true;
-
-      if (name.length < 2) {
-        document.getElementById("error-name").textContent = "Nombre muy corto.";
-        valid = false;
-      }
-
-   if (!emailRegex.test(email)) {
-        document.getElementById("error-email").textContent = "Correo no válido.";
-        valid = false;
-      }
-
-      if (title.length < 3) {
-        document.getElementById("error-title").textContent = "Asunto muy corto.";
-        valid = false;
-      }
-
-      if (message.length < 10) {
-        document.getElementById("error-message").textContent = "Mensaje muy corto.";
-        valid = false;
-      }
-
-      if (!valid) return;
-
-      emailjs.sendForm("service_pros", "template_c4s62rq", this)
-        .then(() => {
-          alert("Mensaje enviado correctamente.");
-          form.reset();
-        })
-        .catch((error) => {
-          alert("Error al enviar el mensaje.");
-          console.error(error);
-        });
+    // Limpiar errores
+    ["name", "email", "title", "message"].forEach(id => {
+      document.getElementById("error-" + id).textContent = "";
     });
-  }
+
+    // Validar datos (ejemplo básico)
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const title = form.title.value.trim();
+    const message = form.message.value.trim();
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    let valid = true;
+
+    if (name.length < 2) {
+      document.getElementById("error-name").textContent = "Nombre muy corto.";
+      valid = false;
+    }
+    if (!emailRegex.test(email)) {
+      document.getElementById("error-email").textContent = "Correo no válido.";
+      valid = false;
+    }
+    if (title.length < 3) {
+      document.getElementById("error-title").textContent = "Asunto muy corto.";
+      valid = false;
+    }
+    if (message.length < 10) {
+      document.getElementById("error-message").textContent = "Mensaje muy corto.";
+      valid = false;
+    }
+
+    if (!valid) return; // Si no pasa validación, no envía
+
+    // Envía con EmailJS
+    emailjs.sendForm("service_pros", "template_c4s62rq", form)
+      .then(() => {
+        alert("Mensaje enviado correctamente.");
+        form.reset();
+      })
+      .catch((error) => {
+        alert("Error al enviar el mensaje.");
+        console.error(error);
+      });
+  });
 });
+
+
 
 
