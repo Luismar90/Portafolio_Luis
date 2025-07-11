@@ -450,27 +450,27 @@
         <div class="fila">
           <!-- Formulario -->
           <div class="col">
-            <form action="https://formspree.io/f/mkgwbepa" method="POST">
-              <input type="text" name="nombre" placeholder="Tú Nombre" />
+            <form id="contact-form" >
+              <input type="text" name="name" placeholder="Tú Nombre" required/>
               <input
                 type="text"
                 name="telefono"
                 placeholder="Número telefónico"
               />
               <input
-                type="text"
+                type="email"
                 name="email"
-                placeholder="Dirección de correo"
+                placeholder="Dirección de correo" required
               />
-              <input type="text" name="Tema" placeholder="Tema" />
+              <input type="text" name="title" placeholder="Tema" required/>
               <textarea
-                name="Mensaje"
+                name="message"
                 id="Mensaje"
                 cols="30"
                 rows="10"
                 placeholder="Mensaje"
               ></textarea>
-              <button>
+              <button type="submit">
                 Enviar Mensaje<i class="fa-solid fa-paper-plane"></i>
                 <span class="overlay"></span>
               </button>
