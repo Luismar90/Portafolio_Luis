@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Righteous&family=Work+Sans:wght@100;300;400;600;800&display=swap");
 * {
   box-sizing: border-box;
-  font-family: "Work Sans";
+  font-family: "Work Sans", sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -722,7 +722,9 @@ footer .arriba {
     display: block;
   }
   .sobremi .fila .col {
-    width: fit-content;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
   }
 
   .skills .fila {
