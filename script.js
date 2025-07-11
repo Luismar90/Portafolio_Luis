@@ -58,7 +58,7 @@ window.onscroll = function(){
 
 // Inicializar EmailJS cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", function() {
-    emailjs.init("service_pros"); //  User ID
+    emailjs.init("f4JxE9G_DaVeeXh7n"); //  User ID
 
     // Configurar envío del formulario
     const form = document.getElementById("contact-form");
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
         form.addEventListener("submit", function(event) {
             event.preventDefault();
 
-            emailjs.sendForm("service_pros", "TU_TEMPLATE_ID", this)
+            emailjs.sendForm("service_pros", "template_c4s62rq", this)
                 .then(function(response) {
                     alert("Mensaje enviado correctamente.");
                 }, function(error) {
