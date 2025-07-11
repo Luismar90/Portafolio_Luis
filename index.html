@@ -49,15 +49,22 @@
         <h2>Desarrollador Backend / Frontend</h2>
         <!--creo la estructura para los iconos de referencias-->
         <div class="redes">
-          <a href="mailto:luismar9099@gmail.com " target="_blank"
+          <a
+            href="mailto:luismar9099@gmail.com "
+            target="_blank"
+            rel="noopener noreferrer"
             ><i class="fa-solid fa-envelope"></i
           ></a>
           <a
             href="https://www.linkedin.com/in/luis-martinez-bb0618268/"
             target="_blank"
+            rel="noopener noreferrer"
             ><i class="fa-brands fa-linkedin-in"></i
           ></a>
-          <a href="https://github.com/Luismar90/LuisMar90.git" target="_blank"
+          <a
+            href="https://github.com/Luismar90/LuisMar90.git"
+            target="_blank"
+            rel="noopener noreferrer"
             ><i class="fa-brands fa-github"></i
           ></a>
         </div>
@@ -405,6 +412,7 @@
                 <a
                   href="https://github.com/Luismar90/RetroMagicWebInterface.git"
                   target="_blank"
+                  rel="noopener noreferrer"
                   >Diseño Creativo</a
                 >
                 Fotografía
@@ -451,14 +459,18 @@
           <!-- Formulario -->
           <div class="col">
             <form id="contact-form">
-              <input type="text" name="name" placeholder="Nombre" required />
-              <input type="email" name="email" placeholder="Correo" required />
-              <input type="text" name="title" placeholder="Asunto" required />
-              <textarea
-                name="message"
-                placeholder="Mensaje"
-                required
-              ></textarea>
+              <input type="text" name="name" placeholder="Nombre" />
+              <div class="error" id="error-name"></div>
+
+              <input type="email" name="email" placeholder="Correo" />
+              <div class="error" id="error-email"></div>
+
+              <input type="text" name="title" placeholder="Asunto" />
+              <div class="error" id="error-title"></div>
+
+              <textarea name="message" placeholder="Mensaje"></textarea>
+              <div class="error" id="error-message"></div>
+
               <button type="submit">Enviar</button>
             </form>
           </div>
@@ -498,9 +510,13 @@
         <a
           href="https://www.linkedin.com/in/luis-martinez-bb0618268/"
           target="_blank"
+          rel="noopener noreferrer"
           ><i class="fa-brands fa-linkedin-in"></i
         ></a>
-        <a href="https://github.com/Luismar90/LuisMar90.git" target="_blank"
+        <a
+          href="https://github.com/Luismar90/LuisMar90.git"
+          target="_blank"
+          rel="noopener noreferrer"
           ><i class="fa-brands fa-github"></i
         ></a>
       </div>

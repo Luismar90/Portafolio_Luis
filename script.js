@@ -67,7 +67,7 @@ window.onscroll = function(){
 
 // Inicializar EmailJS cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", function () {
-  emailjs.init("f4JxE9G_DaVeeXh7n"); // Tu User ID
+  emailjs.init("f4JxE9G_DaVeeXh7n");
 
   const form = document.getElementById("contact-form");
 
@@ -75,41 +75,48 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      // Validación personalizada
+      // Limpiar errores anteriores
+      ["name", "email", "title", "message"].forEach(id => {
+        document.getElementById("error-" + id).textContent = "";
+      });
+
       const name = form.name.value.trim();
       const email = form.email.value.trim();
       const title = form.title.value.trim();
       const message = form.message.value.trim();
-
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
+      let valid = true;
 
       if (name.length < 2) {
-        alert("Por favor, introduce un nombre válido.");
-        return;
+        document.getElementById("error-name").textContent = "Nombre muy corto.";
+        valid = false;
       }
 
       if (!emailRegex.test(email)) {
-  alert("Por favor, introduce un correo electrónico válido (como ejemplo@dominio.com).");
-  return; // <-- ¡esto detiene el envío!
-}
+        document.getElementById("error-email").textContent = "Correo no válido.";
+        valid = false;
+      }
 
       if (title.length < 3) {
-        alert("El asunto debe tener al menos 3 caracteres.");
-        return;
+        document.getElementById("error-title").textContent = "Asunto muy corto.";
+        valid = false;
       }
 
       if (message.length < 10) {
-        alert("El mensaje debe tener al menos 10 caracteres.");
-        return;
+        document.getElementById("error-message").textContent = "Mensaje muy corto.";
+        valid = false;
       }
 
-      // Envío con EmailJS si todo es válido
+      if (!valid) return;
+
+      // Enviar si todo es válido
       emailjs.sendForm("service_pros", "template_c4s62rq", this)
-        .then(function (response) {
+        .then(() => {
           alert("Mensaje enviado correctamente.");
-          form.reset(); // Limpiar el formulario
-        }, function (error) {
+          form.reset();
+        })
+        .catch((error) => {
           alert("Error al enviar el mensaje.");
           console.error(error);
         });
