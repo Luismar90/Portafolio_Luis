@@ -458,21 +458,17 @@
         <div class="fila">
           <!-- Formulario -->
           <div class="col">
-            <form id="contact-form">
-              <input type="text" name="name" placeholder="Nombre" />
-              <div class="error" id="error-name"></div>
+            <input type="text" name="name" placeholder="Nombre" required />
+            <div class="error" id="error-name"></div>
 
-              <input type="email" name="email" placeholder="Correo" />
-              <div class="error" id="error-email"></div>
+            <input type="email" name="email" placeholder="Correo" required />
+            <div class="error" id="error-email"></div>
 
-              <input type="text" name="title" placeholder="Asunto" />
-              <div class="error" id="error-title"></div>
+            <input type="text" name="title" placeholder="Asunto" required />
+            <div class="error" id="error-title"></div>
 
-              <textarea name="message" placeholder="Mensaje"></textarea>
-              <div class="error" id="error-message"></div>
-
-              <button type="submit">Enviar</button>
-            </form>
+            <textarea name="message" placeholder="Mensaje" required></textarea>
+            <div class="error" id="error-message"></div>
           </div>
           <!-- Mapa -->
           <div class="col">
