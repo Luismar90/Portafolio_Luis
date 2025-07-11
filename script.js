@@ -54,3 +54,25 @@ document.getElementById('download-button').addEventListener('click', function() 
 window.onscroll = function(){
     efectoHabilidades();
 } 
+
+
+// Inicializar EmailJS cuando el DOM esté listo
+document.addEventListener("DOMContentLoaded", function() {
+    emailjs.init("service_pros"); //  User ID
+
+    // Configurar envío del formulario
+    const form = document.getElementById("contact-form");
+    if (form) {
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            emailjs.sendForm("service_pros", "TU_TEMPLATE_ID", this)
+                .then(function(response) {
+                    alert("Mensaje enviado correctamente.");
+                }, function(error) {
+                    alert("Error al enviar el mensaje.");
+                    console.error(error);
+                });
+        });
+    }
+});
