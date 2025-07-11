@@ -81,7 +81,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const title = form.title.value.trim();
       const message = form.message.value.trim();
 
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
 
       if (name.length < 2) {
         alert("Por favor, introduce un nombre válido.");
@@ -89,9 +90,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       if (!emailRegex.test(email)) {
-        alert("Por favor, introduce un correo electrónico válido.");
-        return;
-      }
+  alert("Por favor, introduce un correo electrónico válido (como ejemplo@dominio.com).");
+  return; // <-- ¡esto detiene el envío!
+}
 
       if (title.length < 3) {
         alert("El asunto debe tener al menos 3 caracteres.");
