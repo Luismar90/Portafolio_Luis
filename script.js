@@ -1,95 +1,76 @@
+// Control menú responsive
 let menuVisible = false;
-//Función que oculta o muestra el menu
-function mostrarOcultarMenu(){
-    if(menuVisible){
-        document.getElementById("nav").classList ="";
-        menuVisible = false;
-    }else{
-        document.getElementById("nav").classList ="responsive";
-        menuVisible = true;
-    }
-}
 
-document.querySelector(".nav-responsive").addEventListener("click", () => {
-    // Aquí se alterna la clase "active" en el contenedor del menú
-    document.querySelector(".contenedor-header").classList.toggle("active");
-  });
-  
-
-function seleccionar(){
-    //oculto el menu una vez que selecciono una opcion
-    document.getElementById("nav").classList = "";
+function mostrarOcultarMenu() {
+  const nav = document.getElementById("nav");
+  if (menuVisible) {
+    nav.classList = "";
     menuVisible = false;
+  } else {
+    nav.classList = "responsive";
+    menuVisible = true;
+  }
 }
 
+function seleccionar() {
+  document.getElementById("nav").classList = "";
+  menuVisible = false;
+}
 
-//Funcion que aplica las animaciones de las habilidades
-function efectoHabilidades(){
-    var skills = document.getElementById("skills");
-    var distancia_skills = window.innerHeight - skills.getBoundingClientRect().top;
-    if(distancia_skills >= 300){
-        let habilidades = document.getElementsByClassName("progreso");
-        habilidades[0].classList.add("javascript");
-        habilidades[1].classList.add("htmlcss");
-        habilidades[2].classList.add("photoshop");
-        habilidades[3].classList.add("wordpress");
-        habilidades[4].classList.add("drupal");
-        habilidades[5].classList.add("comunicacion");
-        habilidades[6].classList.add("trabajo");
-        habilidades[7].classList.add("creatividad");
-        habilidades[8].classList.add("dedicacion");
-        habilidades[9].classList.add("proyect");
-    }
+// Animación de habilidades al hacer scroll
+function efectoHabilidades() {
+  const skills = document.getElementById("skills");
+  const distancia_skills = window.innerHeight - skills.getBoundingClientRect().top;
+  if (distancia_skills >= 300) {
+    const habilidades = document.getElementsByClassName("progreso");
+    habilidades[0].classList.add("javascript");
+    habilidades[1].classList.add("htmlcss");
+    habilidades[2].classList.add("photoshop");
+    habilidades[3].classList.add("wordpress");
+    habilidades[4].classList.add("drupal");
+    habilidades[5].classList.add("comunicacion");
+    habilidades[6].classList.add("trabajo");
+    habilidades[7].classList.add("creatividad");
+    habilidades[8].classList.add("dedicacion");
+    habilidades[9].classList.add("proyect");
+  }
+}
 
-    // Función para manejar la descarga del CV
-document.getElementById('download-button').addEventListener('click', function() {
-    // Crea un enlace invisible
-    var link = document.createElement('a');
-    link.href = '/doc/CV Luis Raúl Martinez .pdf'; // Reemplaza con la ruta de tu archivo
-    link.download = 'CV.pdf'; // Nombre con el que se guardará el archivo
-
-    // Simula un clic en el enlace para iniciar la descarga
-    document.body.appendChild(link);
-    link.click();
-
-    // Elimina el enlace después de la descarga
-    document.body.removeChild(link);
+// Descargar CV
+document.getElementById('download-button').addEventListener('click', () => {
+  const link = document.createElement('a');
+  link.href = '/doc/CV Luis Raúl Martinez .pdf'; // Ajusta ruta si es necesario
+  link.download = 'CV.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 });
-}
 
+// Aplicar animación habilidades al hacer scroll
+window.addEventListener('scroll', efectoHabilidades);
 
-//detecto el scrolling para aplicar la animacion de la barra de habilidades
-window.onscroll = function(){
-    efectoHabilidades();
-} 
-
-
-
-// Inicializar EmailJS cuando el DOM esté listo
-
+// EmailJS: inicialización y envío de formulario
 document.addEventListener("DOMContentLoaded", () => {
-  // Inicializa EmailJS con tu public key
-  emailjs.init("f4JxE9G_DaVeeXh7n");
+  emailjs.init("f4JxE9G_DaVeeXh7n"); // Tu Public Key
 
   const form = document.getElementById("contact-form");
-
   if (!form) return;
 
-  form.addEventListener("submit", (event) => {
-    event.preventDefault(); // Detiene el envío tradicional
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-    // Limpiar errores
+    // Limpiar mensajes de error
     ["name", "email", "title", "message"].forEach(id => {
       document.getElementById("error-" + id).textContent = "";
     });
 
-    // Validar datos (ejemplo básico)
+    // Validación simple
     const name = form.name.value.trim();
     const email = form.email.value.trim();
     const title = form.title.value.trim();
     const message = form.message.value.trim();
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     let valid = true;
 
     if (name.length < 2) {
@@ -109,20 +90,21 @@ document.addEventListener("DOMContentLoaded", () => {
       valid = false;
     }
 
-    if (!valid) return; // Si no pasa validación, no envía
+    if (!valid) return;
 
-    // Envía con EmailJS
+    // Enviar con EmailJS (cambia serviceID y templateID a los tuyos)
     emailjs.sendForm("service_pros", "template_c4s62rq", form)
       .then(() => {
         alert("Mensaje enviado correctamente.");
         form.reset();
       })
       .catch((error) => {
-        alert("Error al enviar el mensaje.");
+        alert("Error al enviar el mensaje, intenta de nuevo.");
         console.error(error);
       });
   });
 });
+
 
 
 
